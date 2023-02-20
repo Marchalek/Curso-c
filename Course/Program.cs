@@ -1,25 +1,27 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Course {
     class Program {
+
+        static double Pi = 3.14;
         static void Main(string[] args) {
-            Produto p = new Produto();
 
-            Console.WriteLine("Entre os dados do produto:");
-            Console.WriteLine("Nome:");
-            p.Nome = Console.ReadLine();
-            Console.WriteLine("Preço:");
-            p.preco = double.Parse(Console.ReadLine());
-            Console.WriteLine("Quantidade em estoque");
-            p.Quantidade = int.Parse(Console.ReadLine());
+            Console.WriteLine("Entre o valor do raio: ");
+            double raio = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            Console.WriteLine("Dados do produto: " + p);
+            Console.WriteLine("Circunferência = " + Circunferencia(raio).ToString("F2",CultureInfo.InvariantCulture));
+            Console.WriteLine("Volume = " + Volume(raio).ToString("F2",CultureInfo.InvariantCulture));
+            Console.WriteLine("Valor de PI: " + Pi);
 
-            Console.WriteLine("Digite o número de produtos a ser adicionado ao estoque: ");
-            p.AdicionarProdutos(int.Parse(Console.ReadLine()));
+        }
 
-            Console.WriteLine("Digite o número de produtos a ser removido do estoque: ");
-            p.RemoverProdutos(int.Parse(Console.ReadLine()));
+        static double Circunferencia(double r) {
+            return 2.0 * Pi * r;
+        }
+
+        static double Volume(double r) {
+            return 4.0 / 3.0 * Pi * Math.Pow(r, 3.0);
         }
     }
 }
